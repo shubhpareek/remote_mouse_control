@@ -111,7 +111,7 @@ DWORD WINAPI ClientThread(LPVOID lpParam) {
             {
                 sscanf(buffer, "Mouse moved to (%d, %d)\n", &x, &y);
                 // x+=50;y+=50;
-                // SetCursorPos(x, y);
+                SetCursorPos(x, y);
 
             }
             else
@@ -120,22 +120,22 @@ DWORD WINAPI ClientThread(LPVOID lpParam) {
                 if (buffer[18] == 'd')
                 {
                     sscanf(buffer,"Left mouse button down (%d, %d)\n", &x, &y);
-                    // SetCursorPos(x,y);
+                    SetCursorPos(x,y);
                     // if(!st)
                     // {
 
-                    // mouse_event(MOUSEEVENTF_LEFTDOWN, 100, 100, 0, 0);
+                    mouse_event(MOUSEEVENTF_LEFTDOWN, 100, 100, 0, 0);
                     // st=!st;
                     // }
                 }
                 else
                 {
                     sscanf(buffer,"Left mouse button up(%d, %d)\n", &x, &y);
-                    // SetCursorPos(x,y);
+                    SetCursorPos(x,y);
 
                     // if(st)
                     // {
-                    // mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+                    mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
                     st = 0;
 
                     // }
