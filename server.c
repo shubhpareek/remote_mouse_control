@@ -93,14 +93,14 @@ void click() {
 int st=0;
 DWORD WINAPI ClientThread(LPVOID lpParam) {
     SOCKET clientSocket = *(SOCKET *)lpParam;
-    Sleep(10000);
+    // Sleep(10000);
     while(1)
     {
         char buffer[1024] = {0};
 
         // Receive data from client
         int bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
-        Sleep(100);
+        // Sleep(100);
         if (bytesReceived == SOCKET_ERROR)
         {
             printf("Receive failed.\n");
