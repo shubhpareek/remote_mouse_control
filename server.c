@@ -124,7 +124,7 @@ DWORD WINAPI ClientThread(LPVOID lpParam) {
                     // if(!st)
                     // {
 
-                    mouse_event(MOUSEEVENTF_LEFTDOWN, 100, 100, 0, 0);
+                    mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
                     // st=!st;
                     // }
                 }
